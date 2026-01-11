@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flight Weather</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="brand">RWJBarnabas HEALTH</div>
+      <div class="datetime" id="datetime"></div>
+    </header>
+
+    <!-- Controls -->
+    <div class="controls">
+      <input id="airport-input" placeholder="Add airport (e.g., KACY)" maxlength="4" />
+      <button id="btn-add">Add</button>
+      <button id="btn-manage">Manage</button>
+      <button id="btn-clear-cache">Clear Cache</button>
+    </div>
+
+    <div id="manage-panel" class="manage hidden"></div>
+
+    <!-- Alerts -->
+    <div id="alert-banner" class="alerts"></div>
+
+    <div id="airport-list"></div>
+  </div>
+
+  <!-- Card template -->
+  <template id="tpl-airport-card">
+    <div class="airport">
+      <div class="airport-top">
+        <div class="left">
+          <h2 class="js-name"></h2>
+        </div>
+
+        <!-- Right side: Flight category pill (always visible) and collapsed metrics -->
+        <div class="right">
+          <div class="pill js-pill"></div>
+          <div class="metrics-collapsed">
+            <div class="metric js-vis-collapsed"></div>
+            <div class="metric js-ceil-collapsed"></div>
+          </div>
+        </div>
+
+        <!-- Expanded metrics row (shown when expanded) -->
+        <div class="metrics-expanded-row">
+          <div class="metrics-expanded">
+            <div class="metric js-vis-expanded"></div>
+            <div class="metric js-ceil-expanded"></div>
+          </div>
+          <div class="windline js-windline">
+            <div class="js-wind"></div>
+            <div class="js-gust"></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="js-timeline"></div>
+
+    </div>
+  </template>
+
+  <!-- Timeline template -->
+  <template id="tpl-timeline">
+    <div class="timeline" title="Next 24h TAF (hourly)"></div>
+  </template>
+
+  <!-- Tick template -->
+  <template id="tpl-tick">
+    <span class="tick">
+      <span class="tick-hour"></span>
+      <span class="tick-cat"></span>
+    </span>
+  </template>
+
+  <!-- No timeline template -->
+  <template id="tpl-no-taf">
+    <div class="no-taf">No TAF timeline</div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
