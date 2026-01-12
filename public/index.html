@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Flight Weather</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="app">
     <header>
-      <div class="brand">RWJBarnabas HEALTH</div>
+      <div class="brand">RWJBH LifeFlight</div>
       <div class="datetime" id="datetime"></div>
     </header>
 
@@ -18,7 +18,6 @@
       <input id="airport-input" placeholder="Add airport (e.g., KACY)" maxlength="4" />
       <button id="btn-add">Add</button>
       <button id="btn-manage">Manage</button>
-      <button id="btn-clear-cache">Clear Cache</button>
     </div>
 
     <div id="manage-panel" class="manage hidden"></div>
@@ -81,6 +80,9 @@
   <template id="tpl-no-taf">
     <div class="no-taf">No TAF timeline</div>
   </template>
+
+  <button id="btn-clear-cache">Clear Cache</button>
+
 
   <script src="app.js"></script>
 </body>
