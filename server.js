@@ -268,15 +268,32 @@ app.get("/api/tafTimeline", async (req, res) => {
           }
         }
 
-        const vis = parseVisibToNumber(active?.visib);
+        // Extract visibility - try multiple possible field names
+        const vis = parseVisibToNumber(
+          active?.visib || 
+          active?.visibility || 
+          active?.vis || 
+          active?.vsby
+        );
+        
+        // Extract ceiling from clouds
         const ceil = ceilingFromClouds(active?.clouds || []);
 
-        // Extract wind data
+        // Extract wind data - try multiple possible field names
         const windSpeed = typeof active?.wspd === "number" ? active.wspd : 
-                         typeof active?.wspdKt === "number" ? active.wspdKt : null;
+                         typeof active?.wspdKt === "number" ? active.wspdKt :
+                         typeof active?.windSpeed === "number" ? active.windSpeed :
+                         typeof active?.windSpd === "number" ? active.windSpd :
+                         typeof active?.sped === "number" ? active.sped : null;
+                         
         const windGust = typeof active?.wgst === "number" ? active.wgst : 
-                         typeof active?.wgstKt === "number" ? active.wgstKt : null;
-        const windDir = typeof active?.wdir === "number" ? active.wdir : null;
+                         typeof active?.wgstKt === "number" ? active.wgstKt :
+                         typeof active?.windGust === "number" ? active.windGust :
+                         typeof active?.gust === "number" ? active.gust : null;
+                         
+        const windDir = typeof active?.wdir === "number" ? active.wdir : 
+                        typeof active?.windDir === "number" ? active.windDir :
+                        typeof active?.wdirDeg === "number" ? active.wdirDeg : null;
 
         // Determine flight category with fallbacks
         let cat = "unk";
